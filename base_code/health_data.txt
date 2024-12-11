@@ -1,0 +1,10 @@
+[Exercises] 
+riding - 50 kcal
+Total calories burned: 50 kcal 
+
+[Diets] 
+Total calories intake: 0 kcal 
+
+[Total] 
+Basal metabolic rate: 1300 kcal
+The remaining calories: -1350 kcal
