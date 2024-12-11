@@ -25,6 +25,10 @@ int exercise_list_size = 0;
 /*
     description : read the information in "excercises.txt"
 */
+typedef struct{
+	char exercise_name[MAX_EXERCISE_NAME_LEN];
+	int calories_burned_per_minute;
+}Exercise; // by yerin , creating a structure 
 
 void loadExercises(const char* EXERCISEFILEPATH) {
     FILE *file = fopen(EXERCISEFILEPATH, "r");
@@ -34,7 +38,7 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while ( ) {
+    while ((c = fgetc(file)) !=EOF) {//by yerin
     	
         if (exercise_list_size >= MAX_EXERCISES){
         	break;
