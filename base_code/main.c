@@ -21,13 +21,13 @@ static int choice;
 int main() {
 	// To initialize the health data object
     HealthData health_data = {0};
-    
+    int remaining_calories=2000; //by yerin basic remaining_calories setting
     // Tocode: to read the list of the exercises and diets
     
 
     // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if (){
+    	if (remaining_calories<=0){ //by yerin if remaining_calories is negative and zero
 		printf("You have consumed all your calories for today! \n");
 		} 
 		else{
@@ -45,29 +45,27 @@ int main() {
 		// ToCode: to run the sysmtem based on the user's choice
         switch (choice) {
             case 1:
-            	
+            	inputExercise(&health_data); 
                 break;
                 
             case 2:
-            	
+            	inputDiet(&health_data);
                 break;
                 
             case 3:
-            	
+            	printHealthData(&health_data);
                 break;
                 
             case 4:
-            	
-    			printf("Exit the system.\n");
-    			printf("=======================================================================\n");
+            	printf("Exit the system.\n");
+            	printf("=======================================================================================\n")
                 break;
                 
             default:
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while ( );
+    } while ( choice != 4&&remaining_calories>0);//by yerin 
 
     return 0;
 }
-

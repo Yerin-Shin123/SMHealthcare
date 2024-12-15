@@ -18,17 +18,17 @@
 
 
 // To declare the structure of the exercises
+typedef struct{
+   char exercise_name[MAX_EXERCISE_NAME_LEN];
+   int calories_burned_per_minute;
+}exercise; // by yerin  creating a structure 
+
 static Exercise exercise_list[MAX_EXERCISES];
 int exercise_list_size = 0;
-
 
 /*
     description : read the information in "excercises.txt"
 */
-typedef struct{
-   char exercise_name[MAX_EXERCISE_NAME_LEN];
-   int calories_burned_per_minute;
-}Exercise; // by yerin , creating a structure 
 
 void loadExercises(const char* EXERCISEFILEPATH) {
     FILE *file = fopen(EXERCISEFILEPATH, "r");
@@ -38,13 +38,13 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while (fscanf(file, "%49s %d", 
+    while (fscanf(file, "%s %d", 
                   exercise_list[exercise_list_size].exercise_name, 
                   &exercise_list[exercise_list_size].calories_burned_per_minute) == 2) //by yerin
-        exercise_list_size++;          
+        {exercise_list_size++;          
         if (exercise_list_size >= MAX_EXERCISES){
-        	printf("reach to MAX_exercise\n") //present max size by yerin
-           break;
+        	printf("reach to MAX_exercise\n"); //present max size of exercise by yerin
+            break;
       }
     }
 
@@ -67,12 +67,12 @@ void inputExercise(HealthData* health_data) {
     
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
-     for (int i = 0; i < exercise_list_size; i++) {
+     for (i = 0; i < exercise_list_size; i++) {
         printf("%d. %s (%d calories burned per minute)\n", 
                i + 1, 
                exercise_list[i].exercise_name, 
                exercise_list[i].calories_burned_per_minute);
-    }
+} 
     printf("0. Exit\n");//by yerin provide exercise option
 
     // ToCode: to enter the exercise to be chosen with exit option
@@ -97,11 +97,8 @@ void inputExercise(HealthData* health_data) {
 
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     int calories_burned = duration * exercise_list[choice - 1].calories_burned_per_minute;
-    printf("%d calories are burned while you are doing %s for %d minutes.\n", 
-           calories_burned, 
-           exercise_list[choice - 1].exercise_name, 
-           duration); //by yerin total
+    printf("%d calories are burned while you are doing %s for %d minutes.\n", calories_burned, exercise_list[choice - 1].exercise_name, duration); 
+	//by yerin total
     
     printf("Exercise recorded in health data.\n");
-
 }

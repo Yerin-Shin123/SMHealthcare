@@ -84,5 +84,5 @@ void printHealthData(const HealthData* health_data) {
 	// ToCode: to print out the recommendtaion depending on the current total calories burned and intake    
     
     
-	 printf("=======================================================================\n");
+	printf("=======================================================================\n");
 }
