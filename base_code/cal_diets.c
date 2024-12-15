@@ -61,25 +61,24 @@ void inputDiet(HealthData* health_data) {
      for (i = 0; i < diet_list_size; i++) {
         printf("%d. %s (%d Kcal)\n", i + 1, diet_list[i].food_name, diet_list[i].calories_intake); //by yerin, print food name and calories intake
     }
-    printf("%d. Exit\n", diet_count+1);
+    printf("%d. Exit\n", diet_list_size+1);
     // by yerin 
     
-    printf("choose a diet(1-%d):", diet_count+1);
+    printf("choose a diet(1-%d):", diet_list_size+1);
     scanf("%d",&choice); //Selection entered by the user
     
-    if(choice==diet_count+1){
+    if(choice==diet_list_size+1){
     	printf("Exit selected. No diet recorded.\n");
     	return;
 	}
-    else if(choice<1||choice>diet_count){ //when selected number is out of valid number
-    	printf("Warning! invaild options are choiced.\n");
+    else if(choice<1||choice>diet_list_size){ //when selected number is out of valid number
+    	printf("Warning! invaild options choiced. Try again.\n");
     	return;
 	}
 	
 	int calories_intake=diets[choice-1].calories_intake;
 	
-	printf("TodaY you consumed %d kcal by eating %s.\n"); //by yerin pm 11:20, present name of food and consumed calories
-	    calories_intake, diets[choice-1].food_name;
+	printf("Today you consumed %d kcal by eating %s.\n",calories_intake, diets[choice-1].food_name); //by yerin pm 11:20, present name of food and consumed calories
 	    
 	health_data->total_calories_intake+=calories_intake;
  
