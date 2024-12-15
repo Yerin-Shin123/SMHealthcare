@@ -18,7 +18,6 @@
 #define HEALTHFILEPATH "health_data.txt"
 
 static int choice;
-
 int main() {
 	// To initialize the health data object
     HealthData health_data = {0};
@@ -28,8 +27,8 @@ int main() {
 
     // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if ( ){
-            printf("You have consumed all your calories for today! \n");
+    	if (){
+		printf("You have consumed all your calories for today! \n");
 		} 
 		else{
 			printf("\n=======================================================================\n");

@@ -13,8 +13,8 @@
 #include "cal_diets.h"
 #include "cal_healthdata.h"
 
-#define MAX_EXERCISES 100  			// Maximum number of exercises
-#define MAX_EXERCISE_NAME_LEN 50	// Maximum length of the name of exercise
+#define MAX_EXERCISES 100           // Maximum number of exercises
+#define MAX_EXERCISE_NAME_LEN 50   // Maximum length of the name of exercise
 
 
 // To declare the structure of the exercises
@@ -26,8 +26,8 @@ int exercise_list_size = 0;
     description : read the information in "excercises.txt"
 */
 typedef struct{
-	char exercise_name[MAX_EXERCISE_NAME_LEN];
-	int calories_burned_per_minute;
+   char exercise_name[MAX_EXERCISE_NAME_LEN];
+   int calories_burned_per_minute;
 }Exercise; // by yerin , creating a structure 
 
 void loadExercises(const char* EXERCISEFILEPATH) {
@@ -38,11 +38,14 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while ((c = fgetc(file)) !=EOF) {//by yerin
-    	
+    while (fscanf(file, "%49s %d", 
+                  exercise_list[exercise_list_size].exercise_name, 
+                  &exercise_list[exercise_list_size].calories_burned_per_minute) == 2) //by yerin
+        exercise_list_size++;          
         if (exercise_list_size >= MAX_EXERCISES){
-        	break;
-		}
+        	printf("reach to MAX_exercise\n") //present max size by yerin
+           break;
+      }
     }
 
     fclose(file);
@@ -55,8 +58,8 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     return value : No
     
     operation : 1. provide the options for the exercises to be selected
-    			2. enter the duration of the exercise
-    			3. enter the selected exercise and the total calories burned in the health data
+             2. enter the duration of the exercise
+             3. enter the selected exercise and the total calories burned in the health data
 */
 
 void inputExercise(HealthData* health_data) {
@@ -64,17 +67,41 @@ void inputExercise(HealthData* health_data) {
     
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
-
+     for (int i = 0; i < exercise_list_size; i++) {
+        printf("%d. %s (%d calories burned per minute)\n", 
+               i + 1, 
+               exercise_list[i].exercise_name, 
+               exercise_list[i].calories_burned_per_minute);
+    }
+    printf("0. Exit\n");//by yerin provide exercise option
 
     // ToCode: to enter the exercise to be chosen with exit option
-
+    printf("choose an exercise number): "); // by yerin, choose exercise number
+    scanf("%d", &choice);   
+    if (choice == 0) {
+        printf("choose exercise input.\n"); //by yerin, if no choose please put exercise choice
+        return;
+    } else if (choice < 1 || choice > exercise_list_size) {
+        printf("unvailable choice. try again.\n"); 
+        return;
+    }
  
     
     // To enter the duration of the exercise
     printf("Enter the duration of the exercise (in min.): ");
     scanf("%d", &duration);
+    if (duration <= 0) {
+        printf("duration have to be plus.\n"); // by yerin duration have to be positive
+        return;
+    }
 
     // ToCode: to enter the selected exercise and total calcories burned in the health data
+    int calories_burned = duration * exercise_list[choice - 1].calories_burned_per_minute;
+    printf("%d calories are burned while you are doing %s for %d minutes.\n", 
+           calories_burned, 
+           exercise_list[choice - 1].exercise_name, 
+           duration); //by yerin total
     
+    printf("Exercise recorded in health data.\n");
 
 }
