@@ -51,16 +51,6 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=main.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit2]
 FileName=cal_exercise.c
 CompileCpp=0
 Folder=
@@ -70,7 +60,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit3]
+[Unit2]
 FileName=cal_diets.c
 CompileCpp=0
 Folder=
@@ -80,8 +70,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
-FileName=cal_healthdata.c
+[Unit3]
+FileName=cal_exercise.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -90,7 +80,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
+[Unit4]
 FileName=cal_diets.h
 CompileCpp=0
 Folder=
@@ -100,8 +90,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit6]
+FileName=cal_healthdata.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit7]
-FileName=cal_healthdata.h
+FileName=main.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=cal_exercise.h
+FileName=cal_healthdata.h
 CompileCpp=0
 Folder=
 Compile=1

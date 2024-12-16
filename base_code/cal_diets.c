@@ -76,11 +76,10 @@ void inputDiet(HealthData* health_data) {
     	return;
 	}
 	
-	int calories_intake=diets[choice-1].calories_intake;
+	int calories_intake=diet_list[choice-1].calories_intake;
 	
-	printf("Today you consumed %d kcal by eating %s.\n",calories_intake, diets[choice-1].food_name); //by yerin pm 11:20, present name of food and consumed calories
+	printf("Today you consumed %d kcal by eating %s.\n",calories_intake, diet_list[choice-1].food_name); //by yerin pm 11:20, present name of food and consumed calories
 	    
 	health_data->total_calories_intake+=calories_intake;
  
 }
-

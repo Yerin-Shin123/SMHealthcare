@@ -21,7 +21,7 @@
 typedef struct{
    char exercise_name[MAX_EXERCISE_NAME_LEN];
    int calories_burned_per_minute;
-}Exercise; // by yerin  creating a structure 
+}exercise; // by yerin  creating a structure 
 
 static Exercise exercise_list[MAX_EXERCISES];
 int exercise_list_size = 0;
@@ -41,7 +41,7 @@ void loadExercises(const char* exercisepath) {
     while (fscanf(file, "%s %d", exercise_list[exercise_list_size].exercise_name, &exercise_list[exercise_list_size].calories_burned_per_minute) != EOF) //by yerin
         {exercise_list_size++;          
         if (exercise_list_size >= MAX_EXERCISES){
-        	printf("Be careful! reach to MAX_SIZE exercise\n"); //present max size of exercise by yerin
+        	printf("Be careful! reach to MAX_SIZE exercise.\n"); //present max size of exercise by yerin
             break;
       }
     }
@@ -65,7 +65,7 @@ void inputExercise(HealthData* health_data) {
     
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
-     for (i = 0; i < exercise_list_size; i++) {
+    for (i = 0; i < exercise_list_size; i++) {
         printf("%d. %s (%d Kcal burned per minute)\n", i + 1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);
 } 
     printf("%d. Exit\n",exercise_list_size+1);//by yerin provide exercise option
@@ -74,7 +74,7 @@ void inputExercise(HealthData* health_data) {
     printf("choose an exercise number(1-%d): ",exercise_list_size+1); // by yerin, choose exercise number
     scanf("%d", &choice);  
 	 
-    if (choice == exercise_list_sizw+1) {
+    if (choice == exercise_list_size+1) {
         printf("Exit selected. No exercise recorded.\n"); //by yerin, if no choose please put exercise choice
         return;
     } else if (choice < 1 || choice > exercise_list_size) {
@@ -84,7 +84,7 @@ void inputExercise(HealthData* health_data) {
  
     
     // To enter the duration of the exercise
-    printf("Enter the duration of the exercise (in min.): ");
+    printf("Enter the duration of the exercise (in min): ");
     scanf("%d", &duration);
     if (duration <= 0) {
         printf("Be careful! Duration have to be positive number.\n"); // by yerin duration have to be positive
@@ -94,7 +94,7 @@ void inputExercise(HealthData* health_data) {
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     int calories_burned = duration * exercise_list[choice - 1].calories_burned_per_minute;
     
-    printf("Today you consumed %d kcal while you exercising %s for %d minutes.\n",calories_burned, exerxises[choice-1].exercise_name,duration); 
+    printf("Today you consumed %d kcal while you exercising %s for %d minutes.\n",calories_burned, exercise_list[choice-1].exercise_name, duration); 
 	//by yerin pm 12:12, present name of exercise and minutes and consumed calories
-	health_data->total_calories_vurned+=calories_burned;    
+	health_data->total_calories_burned+=calories_burned;    
 }
