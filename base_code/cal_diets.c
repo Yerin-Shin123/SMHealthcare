@@ -13,14 +13,18 @@
 #include "cal_diets.h"
 #include "cal_healthdata.h"
 
-#define MAX_DIETS 100      			// Maximum number of diets
-#define MAX_FOOD_NAME_LEN 50		// Maximum length of the name of food
+#define MAX_DIETS 100               // Maximum number of diets
+#define MAX_FOOD_NAME_LEN 50      // Maximum length of the name of food
 
+typedef struct { // by yerin, food information for structure
+    char name[MAX_FOOD_NAME_LEN]; // by yerin, food name
+    int calories;
+} Diet;
 
 // list of diets 
-
 static Diet diet_list[MAX_DIETS];
-static int diet_list_size= 0;
+static int diet_list_size = 0;
+
 
 /*
     description : read the information in "diets.txt"
@@ -29,17 +33,17 @@ static int diet_list_size= 0;
 void loadDiets(const char* DIETFILEPATH) {
     FILE *file = fopen(DIETFILEPATH, "r");
     if (file == NULL) {
-        printf("There is no file for diets!\n");
+        printf("There is no file for diets! \n");
         return;
     }
 
      // ToCode: to read a list of the diets from the given file
-    while(fscanf(file,"%s %d", diet_list[diet_list_size].food_name, &diet_list[diet_list_size].calories_intake) !=EOF) {//by yerin pm 10:39, read food name and calorie and store in the diet_list array
-	diet_list_size++; //
-	if(diet_list_size>=MAX_DIETS){
-		printf("Be careful!! It's over max size!"); //by yerin pm 10:53, presen twarning message when the maximum size is exceeded
-		break;
-	}          
+    while (fscanf(file, "%s %d", diet_list[diet_list_size].name, &diet_list[diet_list_size].calories) == 2) {
+	    //by yerin, bring diet information from file, and put diet_list array
+        diet_list_size++;
+        if (diet_list_size >= MAX_DIETS){
+           break;
+      }
     }
     fclose(file);
 }
@@ -50,36 +54,41 @@ void loadDiets(const char* DIETFILEPATH) {
     return value : No
     
     operation : 1. provide the options for the diets to be selected
-    			2. enter the selected diet and the total calories intake in the health data
+             2. enter the selected diet and the total calories intake in the health data
 */
 
 void inputDiet(HealthData* health_data) {
     int choice, i;
     
     // ToCode: to provide the options for the diets to be selected
-    printf("Available diet list:\n"); //by yerin, print message of information
-     for (i = 0; i < diet_list_size; i++) {
-        printf("%d. %s (%d Kcal)\n", i + 1, diet_list[i].food_name, diet_list[i].calories_intake); //by yerin, print food name and calories intake
+    printf("The list of diets:\n");
+    for (int i = 0; i < diet_list_size; i++) {
+        printf("%d. %s, %d calories\n", i + 1, diet_list[i].name, diet_list[i].calories); //by yerin, print i+1, food name, food calories
     }
-    printf("%d. Exit\n", diet_list_size+1);
-    // by yerin 
+    printf("0. Exit\n"); //by yerin, print exit option
+
     
-    printf("Choose a diet (1-%d):", diet_list_size+1);
-    scanf("%d",&choice); //Selection entered by the user
-    
-    if(choice==diet_list_size+1){
-    	printf("Exit selected. No diet recorded.\n");
-    	return;
-	}
-    else if(choice<1||choice>diet_list_size){ //when selected number is out of valid number
-    	printf("Warning! Invaild options have to be choiced. Try again.\n");
-    	return;
-	}
-	
-	int calories_intake=diet_list[choice-1].calories_intake;
-	
-	printf("Today you consumed %d kcal by eating %s.\n",calories_intake, diet_list[choice-1].food_name); //by yerin pm 11:20, present name of food and consumed calories
-	    
-	health_data->total_calories_intake+=calories_intake;
- 
+   // ToCode: to enter the diet to be chosen with exit option
+    printf("Choice your diet: "); //by yerin, consider user's oppinion
+    scanf("%d", &choice);
+
+    if (choice == 0) {
+        printf("No diet choiced.\n"); //by yerin, If choice is 0, we print "No diet selected"
+        return;
+    }
+
+    if (choice < 1 || choice > diet_list_size) {
+        printf("It's not appropriate choice.\n"); // by yerin, If choice is choice < 1 || choice > diet_list_size, it is out of bound
+        return;
+    }
+
+
+    // ToCode: to enter the selected diet in the health data
+    printf("You choiced %s, it has %d calories.\n", diet_list[choice - 1].name, diet_list[choice - 1].calories);
+    //by yerin, print name of diet and calories of diet
+
+    // ToCode: to enter the total calories intake in the health data
+    addDietToHealthData(health_data, diet_list[choice - 1].name, diet_list[choice - 1].calories);
+    //by yerin, This code explain that health data and diet can be added
+
 }
