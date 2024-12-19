@@ -77,13 +77,30 @@ void printHealthData(const HealthData* health_data) {
 	
 	// ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
-  
+    
+	if (health_data->exercise_count == 0) {
+        printf("There is no exercise record.\n");  // by yerin, If there is no exercise record, print a message
+    } else {
+        for (int i = 0; i < health_data->exercise_count; i++) {
+            printf("%s: %d calories burned\n", health_data->exercises[i].name, health_data->exercises[i].calories_burned);
+           // by yerin, print exercise name and burned calories output
+        }
+    }
   
     printf("=======================================================================\n");
 
+
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
-
+    
+    if (health_data->diet_count == 0) {
+        printf("There is no diet record.\n");  // by yerin, If there is no diet record, print a message
+    } else {
+        for (int i = 0; i < health_data->diet_count; i++) {
+            printf("%s: %d calories consumed.\n", health_data->diets[i].name, health_data->diets[i].calories);
+            // by yerin, print diet name and burned calories output
+        }
+    }
 
     printf("=======================================================================\n");
 
@@ -91,13 +108,29 @@ void printHealthData(const HealthData* health_data) {
 	// ToCode: to print out the saved history of calories including basal metabolic rate, 
 	// total calories burned, total calories intake, and the remaining calories
 	printf("============================== Total Calories =========================\n");
- 
+    
+    printf("Basal Metabolic Rate (BMR): %d calories\n", health_data->basal_metabolic_rate);
+    printf("Total Calories Burned: %d calories\n", health_data->total_burned_calories);
+    printf("Total Calories Consumed: %d calories\n", health_data->total_consumed_calories);
+    printf("Remaining Calories: %d calories\n", health_data->remaining_calories);
+
  
     printf("=======================================================================\n \n");
     
 	
 	// ToCode: to print out the recommendtaion depending on the current total calories burned and intake    
-    
+    if (health_data->remaining_calories > 0) 
+	{//by yerin, If the remaining calories are bigger than 0, it means that there are additional foods to eat
+        printf("You can eat more food to meet today's calorie goals.\n");
+    } 
+	else if (health_data->remaining_calories < 0) 
+	{// by yerin, If the remaining calories are less than 0, it means that the calorie intake exceeds the goal
+        printf("Today's calorie intake has been exceeded. Consider additional exercises.\n");
+    }
+	 else 
+	{// by yerin, if the user correctly reaches the target calorie then we print a compliment message
+        printf("Today's calorie goal has been achieved. Good job!\n");
+    }
     
 	 printf("=======================================================================\n");
 }
