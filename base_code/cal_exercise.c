@@ -20,7 +20,7 @@
 typedef struct{
     char name[MAX_EXERCISE_NAME_LEN]; // by yerin, exercise name
     int calories_per_min; // by yerin, calories burned per minute
-}Exercise;
+}Exercise; 
 
 // To declare the structure of the exercises
 static Exercise exercise_list[MAX_EXERCISES];
@@ -68,8 +68,8 @@ void inputExercise(HealthData* health_data) {
     printf("The list of exercises: \n");
     for (i = 0; i < exercise_list_size; i++) 
 	{
-        printf("%d. %s (%d calories/min)\n", i + 1, exercise_list[i].name, exercise_list[i].calories_per_min);
-        //by yerin, print index (i+1), exercise name, the exercise's calories consumed per minute
+        printf("%d. %s, %d calories/min\n", i + 1, exercise_list[i].name, exercise_list[i].calories_per_min);
+        //by yerin, print index (i+1), exercise name, the exercise's calories burned per minute
     }
     printf("0. Exit\n"); //by yerin, print exit option
 
@@ -78,12 +78,12 @@ void inputExercise(HealthData* health_data) {
     scanf("%d", &choice);
 
     if (choice == 0) {
-        printf("No exercise choiced.\n"); //by yerin, If choice is 0, we print "No exercise choiced"
+        printf("No exercise choiced.\n"); //by yerin, If user's choice is 0, we print "No exercise choiced"
         return;
     }
 
     if (choice < 1 || choice > exercise_list_size) {
-        printf("It's not appropriate choice.\n"); // by yerin, If choice is (choice < 1 || choice > exercise_list_size), it is out of bound
+        printf("It's not appropriate choice.\n"); // by yerin, If user's choice is (choice < 1 || choice > exercise_list_size), it is out of bound
         return;
     }
 
@@ -97,10 +97,10 @@ void inputExercise(HealthData* health_data) {
     }
     
     int calories_burned = exercise_list[choice - 1].calories_per_min * duration; 
-    printf("You burned %d calories by doing %s for %d minutes.\n", calories_burned, exercise_list[choice - 1].name, duration);
+    printf("You burned %d calories by exercising %s for %d minutes.\n", calories_burned, exercise_list[choice - 1].name, duration);
     //by yerin, It tells that how many calories you burned by doing some exercise
     
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     addExerciseToHealthData(health_data, exercise_list[choice - 1].name, calories_burned);
-    //by yerin, Add choiced exercise data to healthdata
+    //by yerin, Add choiced exercise data to health data
 }

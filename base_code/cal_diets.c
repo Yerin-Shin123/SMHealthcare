@@ -41,7 +41,7 @@ void loadDiets(const char* DIETFILEPATH) {
     while (fscanf(file, "%s %d", diet_list[diet_list_size].name, &diet_list[diet_list_size].calories) == 2) {
 	    //by yerin, bring diet information from file, and put diet_list array
         diet_list_size++;
-        if (diet_list_size >= MAX_DIETS){
+        if (diet_list_size >= MAX_DIETS){ //by yerin, if diet list reach to max size then stop
            break;
       }
     }
@@ -62,7 +62,7 @@ void inputDiet(HealthData* health_data) {
     
     // ToCode: to provide the options for the diets to be selected
     printf("The list of diets:\n");
-    for (int i = 0; i < diet_list_size; i++)
+    for (i = 0; i < diet_list_size; i++)
 	{
         printf("%d. %s, %d calories\n", i + 1, diet_list[i].name, diet_list[i].calories); //by yerin, print index (i+1), food name, food calories
     }
@@ -92,6 +92,6 @@ void inputDiet(HealthData* health_data) {
 
     // ToCode: to enter the total calories intake in the health data
     addDietToHealthData(health_data, diet_list[choice - 1].name, diet_list[choice - 1].calories);
-    //by yerin, Add choiced diet data to healthdata
+    //by yerin, Add choiced diet data to health data
 
 }
