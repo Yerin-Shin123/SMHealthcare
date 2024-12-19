@@ -18,7 +18,7 @@
 
 typedef struct { // by yerin, food information for structure
     char name[MAX_FOOD_NAME_LEN]; // by yerin, food name
-    int calories;
+    int calories; //by yerin, food calories
 } Diet;
 
 // list of diets 
@@ -62,8 +62,9 @@ void inputDiet(HealthData* health_data) {
     
     // ToCode: to provide the options for the diets to be selected
     printf("The list of diets:\n");
-    for (int i = 0; i < diet_list_size; i++) {
-        printf("%d. %s, %d calories\n", i + 1, diet_list[i].name, diet_list[i].calories); //by yerin, print i+1, food name, food calories
+    for (int i = 0; i < diet_list_size; i++)
+	{
+        printf("%d. %s, %d calories\n", i + 1, diet_list[i].name, diet_list[i].calories); //by yerin, print index (i+1), food name, food calories
     }
     printf("0. Exit\n"); //by yerin, print exit option
 
@@ -72,13 +73,15 @@ void inputDiet(HealthData* health_data) {
     printf("Choice your diet: "); //by yerin, consider user's oppinion
     scanf("%d", &choice);
 
-    if (choice == 0) {
-        printf("No diet choiced.\n"); //by yerin, If choice is 0, we print "No diet selected"
+    if (choice == 0)
+	{
+        printf("No diet choiced.\n"); //by yerin, If choice is 0, we print "No diet choiced"
         return;
     }
 
-    if (choice < 1 || choice > diet_list_size) {
-        printf("It's not appropriate choice.\n"); // by yerin, If choice is choice < 1 || choice > diet_list_size, it is out of bound
+    if (choice < 1 || choice > diet_list_size)
+	{
+        printf("It's not appropriate choice.\n"); // by yerin, If choice is (choice < 1 || choice > diet_list_size), it is out of bound
         return;
     }
 
@@ -89,6 +92,6 @@ void inputDiet(HealthData* health_data) {
 
     // ToCode: to enter the total calories intake in the health data
     addDietToHealthData(health_data, diet_list[choice - 1].name, diet_list[choice - 1].calories);
-    //by yerin, This code explain that health data and diet can be added
+    //by yerin, Add choiced diet data to healthdata
 
 }
