@@ -43,7 +43,7 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
     
     // ToCode: to save the chosen diet and total calories intake 
     fprintf(file, "\n[Diets] \n");
-    for (int i = 0; i < health_data->diet_count; i++) 
+    for (i = 0; i < health_data->diet_count; i++) 
     {
         fprintf(file, "%s: %d calories consumed\n", health_data->diets[i].name, health_data->diets[i].calories);
         // by yerin, record the name of meal and the calories consumed on file in the form of "Diet Name: Eating Calories."
@@ -83,7 +83,7 @@ void printHealthData(const HealthData* health_data) {
     } 
 	else 
 	{
-        for (int i = 0; i < health_data->exercise_count; i++) 
+        for (i = 0; i < health_data->exercise_count; i++) 
 		{
             printf("%s: %d calories burned\n", health_data->exercises[i].name, health_data->exercises[i].calories_burned);
            // by yerin, print exercise name and burned calories output
@@ -101,7 +101,7 @@ void printHealthData(const HealthData* health_data) {
     } 
 	else 
 	{
-        for (int i = 0; i < health_data->diet_count; i++) 
+        for (i = 0; i < health_data->diet_count; i++) 
 		{
             printf("%s: %d calories consumed.\n", health_data->diets[i].name, health_data->diets[i].calories);
             // by yerin, print diet name and burned calories output

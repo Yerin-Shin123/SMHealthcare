@@ -1,10 +1,13 @@
 [Exercises] 
-riding - 50 kcal
-Total calories burned: 50 kcal 
+running - 220 kcal
+riding - 100 kcal
+Total calories burned: 320 kcal 
 
 [Diets] 
-Total calories intake: 0 kcal 
+chicken - 925 kcal
+pizza - 900 kcal
+Total calories intake: 1825 kcal 
 
 [Total] 
 Basal metabolic rate: 1300 kcal
-The remaining calories: -1350 kcal
+The remaining calories: 205 kcal

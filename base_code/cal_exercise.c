@@ -20,7 +20,7 @@
 typedef struct{
     char name[MAX_EXERCISE_NAME_LEN]; // by yerin, exercise name
     int calories_per_min; // by yerin, calories burned per minute
-} Exercise; 
+}Exercise; 
 
 // To declare the structure of the exercises
 static Exercise exercise_list[MAX_EXERCISES];
