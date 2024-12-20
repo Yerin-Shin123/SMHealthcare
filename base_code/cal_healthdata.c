@@ -80,8 +80,11 @@ void printHealthData(const HealthData* health_data) {
     
 	if (health_data->exercise_count == 0) {
         printf("There is no exercise record.\n");  // by yerin, If there is no exercise record, print a message
-    } else {
-        for (int i = 0; i < health_data->exercise_count; i++) {
+    } 
+	else 
+	{
+        for (int i = 0; i < health_data->exercise_count; i++) 
+		{
             printf("%s: %d calories burned\n", health_data->exercises[i].name, health_data->exercises[i].calories_burned);
            // by yerin, print exercise name and burned calories output
         }
@@ -95,8 +98,11 @@ void printHealthData(const HealthData* health_data) {
     
     if (health_data->diet_count == 0) {
         printf("There is no diet record.\n");  // by yerin, If there is no diet record, print a message
-    } else {
-        for (int i = 0; i < health_data->diet_count; i++) {
+    } 
+	else 
+	{
+        for (int i = 0; i < health_data->diet_count; i++) 
+		{
             printf("%s: %d calories consumed.\n", health_data->diets[i].name, health_data->diets[i].calories);
             // by yerin, print diet name and burned calories output
         }
@@ -127,10 +133,10 @@ void printHealthData(const HealthData* health_data) {
 	{// by yerin, If the remaining calories are less than 0, it means that the calorie intake exceeds the goal
         printf("Today's calorie intake has been exceeded. Consider additional exercises.\n");
     }
-	 else 
+	else 
 	{// by yerin, if the user correctly reaches the target calorie then we print a compliment message
         printf("Today's calorie goal has been achieved. Good job!\n");
     }
     
-	 printf("=======================================================================\n");
+	printf("=======================================================================\n");
 }
